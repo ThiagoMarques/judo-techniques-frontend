@@ -1,11 +1,22 @@
 <div class="container-home">
     <div class="container-home--image">
-        <img src="assets/img/home-image.png" alt="Imagem de dois judocas">
+        <img *ngIf="videoUrl === undefined" src="assets/img/home-image.png" alt="Imagem de dois judocas">
+        <iframe *ngIf="videoUrl !== undefined" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="container-home--content">
         <h1>Técnicas de Judô</h1>
-        <div class="cards">
+        <div class="cards" *ngIf="false">
             <app-card [imageUrl]="'assets/img/go-kyo.png'" [name]="'GoKyo'"></app-card>
+        </div>
+        <div class="items">
+            <app-list 
+            [imageUrl]="'https://prefeitura204sul.org.br/judo_test/image/Ashi-Guruma.png'"
+            [name]="'De-Ashi-Harai'"
+            [description]="'Uma técnica de rasteira que tem como alvo o pé avançado do oponente.'"
+            [videoUrl]="'https://player.vimeo.com/video/698792378?h=acb9b5c20a'"
+            [groupName]="'Dai ikkyo'"
+            (videoUrlSelected)="onVideoUrlSelected($event)"
+            ></app-list>
         </div>
     </div>
 </div>

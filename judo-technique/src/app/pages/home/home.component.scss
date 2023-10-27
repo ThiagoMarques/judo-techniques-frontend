@@ -6,17 +6,26 @@
     background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgb(237, 240, 235) 47%, rgba(135,148,128,1) 100%);
     &--image {
         display: flex;
-        width: 80%;
+        width: 60%;
         img {
             display: flex;
             width: 100%;
+        }
+        iframe {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            #player {
+                max-width: 100% !important;
+                height: 100vh !important;
+            }
         }
     }
     &--content {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: auto;
+        width: 40%;
         padding: 1em;
         color: #262c33;
         .cards {
@@ -26,9 +35,20 @@
             width: 100%;
             justify-content: center;
         }
+        .items{
+            display: flex;
+            align-items: flex-start;
+            height: 100vh;
+            width: 100%;
+            justify-content: center;
+        }
         app-card {
             display: flex;
             width: 50%;
+        }
+        app-list {
+            display: flex;
+            width: 100%;
         }
     }
 }
