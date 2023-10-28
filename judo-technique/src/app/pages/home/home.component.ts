@@ -18,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   videoUrl: SafeResourceUrl | undefined;
   judoThrows: JudoTechnique[] = [];
-
+  renderThrows: JudoTechnique[] = [];
+  groups: any[] = []; //Refatorar
+  groupNameSelected: string = '';
   loading: boolean = false;
 
   constructor(
@@ -35,6 +37,7 @@ export class HomeComponent implements OnInit {
     this.apiService.getThrows().subscribe({
       next: (data: JudoTechnique[]) => {
         this.judoThrows = data;
+        this.getGroupNames(this.judoThrows);
         this.loading = false;
       },
       error: (err) => {
@@ -47,5 +50,16 @@ export class HomeComponent implements OnInit {
   onVideoUrlSelected(url: string) {
     this.videoUrl = url;
     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  getGroupNames(data: JudoTechnique[]) {
+    this.groups = data.map((item: JudoTechnique) => item.groupName);
+    console.log("🚀 ~ file: home.component.ts:57 ~ HomeComponent ~ getGroupNames ~ this.groups:", this.groups)
+  }
+
+  onGroupNameSelected(groupName: string) {
+    this.groupNameSelected = groupName;
+    this.renderThrows = this.judoThrows.filter((item: JudoTechnique) => item.groupName === groupName);
+    console.log("🚀 ~ file: home.component.ts:63 ~ HomeComponent ~ onGroupNameSelected ~ this.renderThrows:", this.renderThrows)
   }
 }

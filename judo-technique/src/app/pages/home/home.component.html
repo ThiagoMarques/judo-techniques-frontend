@@ -4,11 +4,16 @@
         <iframe *ngIf="videoUrl !== undefined" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="container-home--content">
-        <h1>Técnicas de Judô</h1>
-        <div class="cards" *ngIf="false">
-            <app-card [imageUrl]="'assets/img/go-kyo.png'" [name]="'GoKyo'"></app-card>
+        <h1>{{groupNameSelected.length === 0 ? 'GoKyo' : this.groupNameSelected}}</h1>
+        <div class="cards" *ngIf="groupNameSelected.length === 0">
+            <app-card *ngFor="let card of groups"
+            [imageUrl]="'assets/img/go-kyo.png'" 
+            [name]="card"
+            (groupNameSelected)="onGroupNameSelected($event)"
+            >
+            </app-card>
         </div>
-        <div class="items" *ngIf="!loading">
+        <div class="items" *ngIf="!loading && groupNameSelected.length !== 0">
             <app-list *ngFor="let throw of judoThrows"
             [imageUrl]="throw.imageUrl"
             [name]="throw.name"
