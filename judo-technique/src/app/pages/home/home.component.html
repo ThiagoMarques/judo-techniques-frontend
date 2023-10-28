@@ -8,13 +8,13 @@
         <div class="cards" *ngIf="false">
             <app-card [imageUrl]="'assets/img/go-kyo.png'" [name]="'GoKyo'"></app-card>
         </div>
-        <div class="items">
-            <app-list 
-            [imageUrl]="'https://prefeitura204sul.org.br/judo_test/image/Ashi-Guruma.png'"
-            [name]="'De-Ashi-Harai'"
-            [description]="'Uma técnica de rasteira que tem como alvo o pé avançado do oponente.'"
-            [videoUrl]="'https://player.vimeo.com/video/698792378?h=acb9b5c20a'"
-            [groupName]="'Dai ikkyo'"
+        <div class="items" *ngIf="!loading">
+            <app-list *ngFor="let throw of judoThrows"
+            [imageUrl]="throw.imageUrl"
+            [name]="throw.name"
+            [description]="throw.description"
+            [videoUrl]="throw.videoUrl"
+            [groupName]="throw.groupName"
             (videoUrlSelected)="onVideoUrlSelected($event)"
             ></app-list>
         </div>
