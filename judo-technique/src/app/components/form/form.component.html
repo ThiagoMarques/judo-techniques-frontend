@@ -1,6 +1,6 @@
 <div class="container-form">
     <div class="header">
-        <span class="button"><i class="fa fa-arrow-left"></i>Retornar</span>
+        <span class="button" (click)="backToHome()"><i class="fa fa-arrow-left"></i>Retornar</span>
         <span class="title">Cadastro de novo golpe</span>
     </div>
     <form [formGroup]="form">
@@ -35,11 +35,12 @@
         [description]="form.get('description')?.value"
         [videoUrl]="form.get('videoUrl')?.value"
         [groupName]="form.get('groupName')?.value"
+        [isCreate]="this.mode === 'create'"
         ></app-list>
     </div>
     <div class="container-button">
-        <button><i class="fa fa-plus"></i>Cadastrar Golpe</button>
-        <button><i class="fa fa-pencil"></i>Editar Golpe</button>
-        <button><i class="fa fa-trash"></i>Excluir Golpe</button>
+        <button *ngIf="this.mode === 'create'"><i class="fa fa-plus"></i>Cadastrar Golpe</button>
+        <button *ngIf="this.mode === 'edit'"><i class="fa fa-pencil"></i>Editar Golpe</button>
+        <button *ngIf="this.mode === 'edit'"><i class="fa fa-trash"></i>Excluir Golpe</button>
     </div>
 </div>

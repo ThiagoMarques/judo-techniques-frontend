@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit {
   groups: any[] = []; //Refatorar
   groupNameSelected: string = '';
   loading: boolean = false;
-  displayThrows: boolean = false;
+  displayThrows: boolean = true;
+  editThrow: boolean = false;
+  dataEditThrow: JudoTechnique[] = [];
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -52,6 +54,26 @@ export class HomeComponent implements OnInit {
   onVideoUrlSelected(url: string) {
     this.videoUrl = url;
     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  onShowHome(option: any) {
+    console.log("🚀 ~ file: home.component.ts:58 ~ HomeComponent ~ onShowHome ~ option:", option)
+    if(option) {
+      this.displayThrows = true;
+    }
+  }
+
+  createThrow() {
+    this.displayThrows = false;
+  }
+
+  editThrowSelected(id: number) {
+    this.loading = true;
+    this.displayThrows = false;
+    this.editThrow = true;
+    this.dataEditThrow = this.judoThrows.filter((tech: JudoTechnique) => tech.id === id);
+    this.loading = false;
+    console.log('id', id)
   }
 
   getGroupNames(data: JudoTechnique[]) {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ListComponent } from '../list/list.component';
@@ -11,13 +11,22 @@ import { ListComponent } from '../list/list.component';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+  @Input() edit: boolean = false;
+  @Input() id: number = 0;
+  @Input() name: string = '';
+  @Input() videoUrl: string = '';
+  @Input() imageUrl: string = '';
+  @Input() description: string = '';
+  @Input() groupName: string = '';
   @Output() videoUrlSelected = new EventEmitter<string>();
+  @Output() returnSelected = new EventEmitter<boolean>();
 
   form!: FormGroup;
 
   mode: string = 'create' || 'edit';
 
   ngOnInit(): void {
+    this.mode = this.edit ? 'edit' : 'create';
     this.forms();
   }
 
@@ -45,6 +54,10 @@ export class FormComponent implements OnInit {
 
   selectUrl() {
     this.videoUrlSelected.emit(this.form.get('videoUrl')?.value);
+  }
+  backToHome() {
+    console.log('Clicou')
+    this.returnSelected.emit(true);
   }
 
 }

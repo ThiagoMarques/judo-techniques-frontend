@@ -15,9 +15,15 @@ export class ListComponent {
   @Input() imageUrl: string = '';
   @Input() description: string = '';
   @Input() groupName: string = '';
+  @Input() isCreate: boolean = false;
   @Output() videoUrlSelected = new EventEmitter<string>();
+  @Output() editThrowSelected = new EventEmitter<number>();
 
   selectUrl() {
     this.videoUrlSelected.emit(this.videoUrl);
+  }
+
+  editThrow() {
+    this.editThrowSelected.emit(this.id);
   }
 }

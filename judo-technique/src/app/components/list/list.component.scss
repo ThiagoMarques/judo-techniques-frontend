@@ -34,4 +34,15 @@
             text-transform: none;
         }
     }
+    &--edit {
+        display: flex;
+        width: 10%;
+        align-items: center;
+        height: 100%;
+        justify-content: center;
+        border-left: 1px solid #262c33;
+        .fa {
+            font-size: 1.125em;
+        }
+    }
 }

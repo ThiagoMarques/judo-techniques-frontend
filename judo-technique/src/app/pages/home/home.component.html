@@ -16,22 +16,44 @@
             </div>
             <div class="items" *ngIf="!loading && groupNameSelected.length !== 0">
                 <app-list *ngFor="let throw of judoThrows"
+                [id]="throw.id"
                 [imageUrl]="throw.imageUrl"
                 [name]="throw.name"
                 [description]="throw.description"
                 [videoUrl]="throw.videoUrl"
                 [groupName]="throw.groupName"
+                [isCreate]="false"
                 (videoUrlSelected)="onVideoUrlSelected($event)"
+                (editThrowSelected)="editThrowSelected($event)"
                 ></app-list>
             </div>
             <div class="menu">
-                <span class="menu-item"><i class="fa fa-plus"></i><span class="text">Adicionar Golpe</span></span>
+                <span class="menu-item" (click)="createThrow()"><i class="fa fa-plus"></i><span class="text">Adicionar Golpe</span></span>
             </div>
         </div>
     </ng-container>
     <ng-container *ngIf="!displayThrows">
-        <div class="container-home--form">
-            <app-form (videoUrlSelected)="onVideoUrlSelected($event)"></app-form>
+        <div class="container-home--form" *ngIf="!loading">
+            <ng-container *ngIf="!editThrow">
+                <app-form 
+                (videoUrlSelected)="onVideoUrlSelected($event)"
+                (returnSelected)="onShowHome($event)"
+                [edit]="editThrow"
+                ></app-form>
+            </ng-container>
+            <ng-container *ngIf="editThrow">
+                <app-form 
+                (videoUrlSelected)="onVideoUrlSelected($event)"
+                (returnSelected)="onShowHome($event)"
+                [edit]="editThrow"
+                [id]="dataEditThrow[0].id"
+                [imageUrl]="dataEditThrow[0].imageUrl"
+                [name]="dataEditThrow[0].name"
+                [description]="dataEditThrow[0].description"
+                [videoUrl]="dataEditThrow[0].videoUrl"
+                [groupName]="dataEditThrow[0].groupName"
+                ></app-form>
+            </ng-container>
         </div>
     </ng-container>
     
