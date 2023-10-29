@@ -5,15 +5,35 @@
     align-items: center;
     justify-content: center;
     padding: 1.5em;
+    .header {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        .button {
+            display: flex;
+            font-weight: 600;
+            cursor: pointer;
+            .fa {
+                padding-right: 0.75em;
+            }
+
+        }
+        .title {
+            display: flex;
+            margin: auto;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 1.5em;
+        }
+    }
     form {
         display: flex;
         flex-direction: column;
         width: 100%;
+        margin-top: 1.5em;
     }
-    .title {
-        font-weight: 600;
-        margin-bottom: 1.5em;
-    }
+
     .field {
         display: flex;
         width: 100%;
