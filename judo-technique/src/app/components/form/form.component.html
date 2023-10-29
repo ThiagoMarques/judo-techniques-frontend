@@ -39,8 +39,8 @@
         ></app-list>
     </div>
     <div class="container-button">
-        <button *ngIf="this.mode === 'create'"><i class="fa fa-plus"></i>Cadastrar Golpe</button>
-        <button *ngIf="this.mode === 'edit'"><i class="fa fa-pencil"></i>Editar Golpe</button>
-        <button *ngIf="this.mode === 'edit'"><i class="fa fa-trash"></i>Excluir Golpe</button>
+        <button *ngIf="this.mode === 'create'" (click)="createThrow()"><i class="fa fa-plus"></i>Cadastrar Golpe</button>
+        <button *ngIf="this.mode === 'edit'" (click)="editThrow()"><i class="fa fa-pencil"></i>Editar Golpe</button>
+        <button *ngIf="this.mode === 'edit'" (click)="removeThrow()"><i class="fa fa-trash"></i>Excluir Golpe</button>
     </div>
 </div>

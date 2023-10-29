@@ -28,7 +28,7 @@ export class ApiService {
   }
 
   // PUT
-  put(data: any): Observable<any> {
+  putThrow(data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${this.endpoint}`, data);
   }
 

@@ -57,14 +57,16 @@ export class HomeComponent implements OnInit {
   }
 
   onShowHome(option: any) {
-    console.log("🚀 ~ file: home.component.ts:58 ~ HomeComponent ~ onShowHome ~ option:", option)
     if(option) {
       this.displayThrows = true;
+      this.getThrows();
     }
   }
 
   createThrow() {
     this.displayThrows = false;
+    this.editThrow = false;
+    this.dataEditThrow = [];
   }
 
   editThrowSelected(id: number) {
@@ -73,17 +75,19 @@ export class HomeComponent implements OnInit {
     this.editThrow = true;
     this.dataEditThrow = this.judoThrows.filter((tech: JudoTechnique) => tech.id === id);
     this.loading = false;
-    console.log('id', id)
+  }
+
+  removeDuplicates(arr: string[]): string[] {
+    return [...new Set(arr)];
   }
 
   getGroupNames(data: JudoTechnique[]) {
-    this.groups = data.map((item: JudoTechnique) => item.groupName);
-    console.log("🚀 ~ file: home.component.ts:57 ~ HomeComponent ~ getGroupNames ~ this.groups:", this.groups)
+    const techniques = data.map((item: JudoTechnique) => item.groupName);
+    this.groups = this.removeDuplicates(techniques);
   }
 
   onGroupNameSelected(groupName: string) {
     this.groupNameSelected = groupName;
     this.renderThrows = this.judoThrows.filter((item: JudoTechnique) => item.groupName === groupName);
-    console.log("🚀 ~ file: home.component.ts:63 ~ HomeComponent ~ onGroupNameSelected ~ this.renderThrows:", this.renderThrows)
   }
 }
