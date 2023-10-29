@@ -6,11 +6,12 @@ import { ListComponent } from 'src/app/components/list/list.component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ApiService } from 'src/app/services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormComponent } from 'src/app/components/form/form.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CardComponent, ListComponent, HttpClientModule],
+  imports: [CommonModule, CardComponent, ListComponent, HttpClientModule, FormComponent],
   providers: [ApiService],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
   groups: any[] = []; //Refatorar
   groupNameSelected: string = '';
   loading: boolean = false;
+  displayThrows: boolean = false;
 
   constructor(
     private sanitizer: DomSanitizer,

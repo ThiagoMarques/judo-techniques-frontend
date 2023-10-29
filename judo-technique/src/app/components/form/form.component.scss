@@ -30,5 +30,40 @@
             border-left: none;
             border-right: none;
         }
+        input:focus-visible {
+            margin: 0 0.5em;
+            width: 100%;
+            background-color: transparent;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            outline:none;
+        }
+    }
+    .container-list {
+        display: flex;
+        width: 100%;
+        app-list {
+            display: flex;
+            width: 90%;
+            margin: 2em;
+    
+        }
+    }
+    .container-button {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 1em;
+        justify-content: center;
+        button {
+            background-color: transparent;
+            border-radius: 1em;
+            padding: 1em;
+            cursor: pointer;
+        }
+        .fa {
+            padding-right: 0.5em;
+        }
     }
 }

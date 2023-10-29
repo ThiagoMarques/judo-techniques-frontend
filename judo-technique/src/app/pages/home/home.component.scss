@@ -64,13 +64,26 @@
                     font-weight: 500;
                 }
             }
-            
+            &-form {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
         }
         app-card {
             display: flex;
             width: 50%;
         }
         app-list {
+            display: flex;
+            width: 100%;
+        }
+    }
+    &--form {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        app-form {
             display: flex;
             width: 100%;
         }
