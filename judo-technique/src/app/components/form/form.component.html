@@ -1,0 +1,46 @@
+<div class="container-form">
+    <div class="header">
+        <span class="button" (click)="backToHome()"><i class="fa fa-arrow-left"></i>Retornar</span>
+        <span class="title">Cadastro de novo golpe</span>
+    </div>
+    <form [formGroup]="form">
+        <div class="field">
+            <span>Grupo: </span>
+            <input type="text" placeholder="Insira o nome do grupo" formControlName="groupName">
+        </div>
+        <div class="field">
+            <span>Nome: </span>
+            <input type="text" placeholder="Insira o nome do golpe" formControlName="name">
+        </div>
+        <div class="field">
+            <span>Vídeo: </span>
+            <input type="text" (keyup)="selectUrl()" placeholder="Insira o link do vídeo" formControlName="videoUrl">
+        </div>
+        <div class="field">
+            <span>Imagem: </span>
+            <input type="text" placeholder="Insira o link da imagem" formControlName="imageUrl">
+        </div>
+        <div class="field">
+            <span>Descrição: </span>
+            <input type="text" placeholder="Insira o uma descrição de até 50 caracteres" formControlName="description">
+            <div *ngIf="getFormErrors().length > 0">
+                <p *ngFor="let error of getFormErrors()">{{ error }}</p>
+            </div>
+        </div>
+    </form>
+    <div class="container-list">
+        <app-list
+        [imageUrl]="form.get('imageUrl')?.value ? form.get('imageUrl')?.value : 'assets/img/default.png'"
+        [name]="form.get('name')?.value"
+        [description]="form.get('description')?.value"
+        [videoUrl]="form.get('videoUrl')?.value"
+        [groupName]="form.get('groupName')?.value"
+        [isCreate]="this.mode === 'create'"
+        ></app-list>
+    </div>
+    <div class="container-button">
+        <button *ngIf="this.mode === 'create'" (click)="createThrow()"><i class="fa fa-plus"></i>Cadastrar Golpe</button>
+        <button *ngIf="this.mode === 'edit'" (click)="editThrow()"><i class="fa fa-pencil"></i>Editar Golpe</button>
+        <button *ngIf="this.mode === 'edit'" (click)="removeThrow()"><i class="fa fa-trash"></i>Excluir Golpe</button>
+    </div>
+</div>

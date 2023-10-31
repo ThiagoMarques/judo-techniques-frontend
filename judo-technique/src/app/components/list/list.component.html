@@ -1,0 +1,13 @@
+<div class="list">
+    <div class="list--image" (click)="selectUrl()">
+        <img [src]="imageUrl" [alt]="name">
+    </div>
+    <div class="list--detail" (click)="selectUrl()">
+        <span class="main">Grupo: <span class="info">{{groupName}}</span></span>
+        <span class="main">Nome: <span class="info">{{name}}</span></span>
+        <span class="main">Descrição: <span class="info">{{description}}</span></span>
+    </div>
+    <div class="list--edit" (click)="editThrow()" *ngIf="!isCreate">
+        <span><i class="fa fa-pencil"></i></span>
+    </div>
+</div>

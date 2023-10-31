@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,4 +11,9 @@ import { CommonModule } from '@angular/common';
 export class CardComponent {
   @Input() imageUrl: string = '';
   @Input() name: string = '';
+  @Output() groupNameSelected = new EventEmitter<string>();
+
+  selectGroup() {
+    this.groupNameSelected.emit(this.name);
+  }
 }

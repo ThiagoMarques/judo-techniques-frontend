@@ -1,5 +1,60 @@
 <div class="container-home">
     <div class="container-home--image">
-        <img src="assets/img/home-image.png" alt="Imagem de dois judocas">
+        <img *ngIf="videoUrl === undefined" src="assets/img/home-image.png" alt="Imagem de dois judocas">
+        <iframe *ngIf="videoUrl !== undefined" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
     </div>
+    <ng-container *ngIf="displayThrows">
+        <div class="container-home--content">
+            <h1>{{groupNameSelected.length === 0 ? 'GoKyo' : this.groupNameSelected}}</h1>
+            <div class="cards" *ngIf="groupNameSelected.length === 0">
+                <app-card *ngFor="let card of groups"
+                [imageUrl]="'assets/img/go-kyo.png'" 
+                [name]="card"
+                (groupNameSelected)="onGroupNameSelected($event)"
+                >
+                </app-card>
+            </div>
+            <div class="items" *ngIf="!loading && groupNameSelected.length !== 0">
+                <app-list *ngFor="let throw of judoThrows"
+                [id]="throw.id"
+                [imageUrl]="throw.imageUrl"
+                [name]="throw.name"
+                [description]="throw.description"
+                [videoUrl]="throw.videoUrl"
+                [groupName]="throw.groupName"
+                [isCreate]="false"
+                (videoUrlSelected)="onVideoUrlSelected($event)"
+                (editThrowSelected)="editThrowSelected($event)"
+                ></app-list>
+            </div>
+            <div class="menu">
+                <span class="menu-item" (click)="createThrow()"><i class="fa fa-plus"></i><span class="text">Adicionar Golpe</span></span>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!displayThrows">
+        <div class="container-home--form" *ngIf="!loading">
+            <ng-container *ngIf="!editThrow">
+                <app-form 
+                (videoUrlSelected)="onVideoUrlSelected($event)"
+                (returnSelected)="onShowHome($event)"
+                [edit]="editThrow"
+                ></app-form>
+            </ng-container>
+            <ng-container *ngIf="editThrow">
+                <app-form 
+                (videoUrlSelected)="onVideoUrlSelected($event)"
+                (returnSelected)="onShowHome($event)"
+                [edit]="editThrow"
+                [id]="dataEditThrow[0].id"
+                [imageUrl]="dataEditThrow[0].imageUrl"
+                [name]="dataEditThrow[0].name"
+                [description]="dataEditThrow[0].description"
+                [videoUrl]="dataEditThrow[0].videoUrl"
+                [groupName]="dataEditThrow[0].groupName"
+                ></app-form>
+            </ng-container>
+        </div>
+    </ng-container>
+    
 </div>
