@@ -80,7 +80,7 @@ export class FormComponent implements OnInit {
 
   editThrow() {
     this.loading = true;
-    this.apiService.putThrow(this.form.value).subscribe({
+    this.apiService.putThrow(this.form.get('id')?.value, this.form.value).subscribe({
       next: () => {
         this.backToHome();
         this.loading = false;

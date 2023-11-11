@@ -28,8 +28,8 @@ export class ApiService {
   }
 
   // PUT
-  putThrow(data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${this.endpoint}`, data);
+  putThrow(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${this.endpoint}/${id}`, data);
   }
 
   // DELETE
